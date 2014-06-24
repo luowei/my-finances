@@ -1,0 +1,215 @@
+@charset "utf-8";
+
+/* @group reset styles
+------------------------------------------------------------------------*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img{border: none;}
+
+
+/* @group general styles
+------------------------------------------------------------------------*/
+html, body{
+    font: 12px Arial,Helvetical,sans-serif;
+}
+
+
+/* @group layout styles
+------------------------------------------------------------------------*/
+.header, .sidebar, .content, .footer{
+    position: absolute;
+}
+
+.header{
+    /*background: url(../images/header2.jpg) repeat;*/
+}
+
+.sidebar {
+    background: #F5F5F5;
+}
+
+.header{
+    height: 50px;
+    top:0;
+    left: 0;
+    right: 0;
+}
+
+.sidebar {
+    width:200px;
+    top:50px;
+    left: 0;
+    bottom: 30px;
+}
+
+.content{
+    top:50px;
+    left: 200px;
+    bottom: 30px;
+    right: 0;
+    /*background: url(../images/welcome.gif) repeat-x;*/
+}
+
+.footer{
+    height: 30px;
+    left:0;
+    bottom: 0;
+    right: 0;
+    /*background: url(../images/bg_footer.png) repeat-x;*/
+}
+
+.header_inner, .sidebar_inner, .content_inner, .footer_inner{
+    height: 100%;
+    overflow: auto;
+}
+
+.header_inner{
+    /*background: url(../images/bg_menu_main.jpg) repeat-x left bottom;*/
+}
+
+.sidebar_inner {
+    border-right: 1px solid #999;
+}
+
+.content_inner{
+    border-left: 1px solid #fff;
+
+}
+
+/* Examples , box div styles
+------------------------------------------------------------------------*/
+.bs-example {
+    position: relative;
+    padding: 45px 15px 15px;
+    margin: 0 -15px 15px;
+    background-color: #fafafa;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px 0;
+}
+/* Echo out a label for the example */
+.bs-example:after {
+    content: "Example";
+    position: absolute;
+    top:  15px;
+    left: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tweak display of the code snippets when following an example */
+.bs-example + .highlight {
+    margin: -15px -15px 15px;
+    border-radius: 0;
+    border-width: 0 0 1px;
+}
+
+/* Code snippets
+ * Generated via Pygments and Jekyll, these are snippets of HTML, CSS, and JS.
+----------------------------------------------------------------------*/
+.highlight {
+    display: none; /* hidden by default, until >480px */
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+}
+.highlight pre {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: transparent;
+    border: 0;
+    white-space: nowrap;
+}
+.highlight pre code {
+    font-size: inherit;
+    color: #333; /* Effectively the base text color */
+}
+.highlight pre .lineno {
+    display: inline-block;
+    width: 22px;
+    padding-right: 5px;
+    margin-right: 10px;
+    text-align: right;
+    color: #bebec5;
+}
+
+/* Show code snippets when we have the space */
+@media (min-width: 481px) {
+    .highlight {
+        display: block;
+    }
+}
+
+
+/* modal-dialog */
+.modal-dialog {
+    position: relative;
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        position: relative;
+        overflow: auto;
+    }
+}
+
+/* @group content_inner styles
+------------------------------------------------------------------------*/
+.wrapper{
+    width: 96%;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.messagePlace{
+    position: absolute;
+    top:10px;
+    left: 400px;
+    right: 400px;
+}
+
+
+/* @group  styles
+------------------------------------------------------------------------*/
+.btn-margin-right{
+    margin-right: 50px;
+}
+
+
+/* @group footer styles
+------------------------------------------------------------------------*/
+.copyright{
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+}
+
+/* @group error message styles
+------------------------------------------------------------------------*/
+.error{
+    color: #B94A48;
+}
+
+span.error{
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}

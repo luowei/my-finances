@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Datepicker - Format date</title>
+
+    <link rel="stylesheet" href="./1.10.4/themes/jquery-ui.css">
+    <script src="../jquery/jquery-2.1.0.js"></script>
+    <script src="1.10.4/ui/jquery-ui.js"></script>
+    <script src="./1.10.4/minified/ui/jquery.ui.datepicker-zh-CN.js"></script>
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+            $( "#format" ).change(function() {
+                $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+            });
+
+            $( "#startDate" ).datepicker();
+        });
+    </script>
+</head>
+<body>
+
+<p>Date: <input type="text" id="datepicker" size="30"></p>
+
+<p>startDate: <input type="text" id="startDate" size="30"></p>
+
+<p>Format options:<br>
+    <select id="format">
+        <option value="mm/dd/yy">Default - mm/dd/yy</option>
+        <option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>
+        <option value="d M, y">Short - d M, y</option>
+        <option value="d MM, y">Medium - d MM, y</option>
+        <option value="DD, d MM, yy">Full - DD, d MM, yy</option>
+        <option value="&apos;day&apos; d &apos;of&apos; MM &apos;in the year&apos; yy">With text - 'day' d 'of' MM 'in the year' yy</option>
+    </select>
+</p>
+
+
+</body>
+</html>

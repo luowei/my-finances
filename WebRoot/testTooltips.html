@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./resources/bootstrap3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/bootstrap3/css/bootstrap-theme.min.css"/>
+
+
+    <script type="text/javascript" src="./resources/js/jquery/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="./resources/bootstrap3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<a id="example" data-toggle="tooltip">Tooltip on bottom</a>
+<script type="text/javascript">
+    var title = "<p>这里是title</p>";
+    var options = {
+        placement: "bottom", // 在链接下方显示tooltip
+        trigger: "hover",    // 显示方式
+        title: title,        // tooltip中内容
+        html: "true"   // 如果为true，title可以为html代码
+    };
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip(options);
+        $('code').tooltip('show');
+    });
+</script>
+<br/><br/><br/>
+<code class="text-muted" title="Ply now!" data-placement="bottom">aaaaaaaaaaaaaaaaaaaa</code>
+
+</body>
+</html>
