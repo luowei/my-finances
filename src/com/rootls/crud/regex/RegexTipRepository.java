@@ -91,4 +91,9 @@ public class RegexTipRepository extends BaseRespository {
             }
         });
     }
+
+    public int delAll() {
+        String sql = " delete from regextip ";
+        return getJdbcTemplate().update(sql);
+    }
 }

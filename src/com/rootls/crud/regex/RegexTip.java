@@ -1,5 +1,6 @@
 package com.rootls.crud.regex;
 
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,7 @@ import java.io.Serializable;
  */
 public class RegexTip implements Serializable {
 
+    @XmlTransient
     Integer id;
     //名称
     String name;
@@ -59,5 +61,15 @@ public class RegexTip implements Serializable {
 
     public void setRegex(String regex) {
         this.regex = regex;
+    }
+
+    @Override
+    public String toString() {
+        return "RegexTip{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", describe='" + describe + '\'' +
+                ", regex='" + regex + '\'' +
+                '}';
     }
 }

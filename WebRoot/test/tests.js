@@ -69,7 +69,7 @@ test('assertions', function() {
     var encodedStr =  base64encode(utf16to8("rootls.com123456"))
 
 //    alert('decode to hex:'+CharToHex(base64decode(encodedStr)))
-    alert('encode to base64:'+encodedStr)
+    alert('base64Encode to base64:'+encodedStr)
 
     equal( utf8to16(base64decode(encodedStr)),"rootls.com123456", 'test base64 ok');
 });

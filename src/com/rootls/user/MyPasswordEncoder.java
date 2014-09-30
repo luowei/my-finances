@@ -2,7 +2,8 @@ package com.rootls.user;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static com.rootls.utils.BASE64.decode;
+import static com.rootls.utils.BASE64.base64Decode;
+import static com.rootls.utils.BASE64.base64Encode;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,13 +16,13 @@ public class MyPasswordEncoder implements PasswordEncoder {
 
     @Override
     public String encode(CharSequence rawPassword) {
-        return encode(rawPassword.toString());
+        return base64Encode(rawPassword.toString());
 //        return (new BASE64Encoder()).encode(rawPassword.toString().getBytes());
     }
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return rawPassword.equals(decode(encodedPassword));
+        return rawPassword.equals(base64Decode(encodedPassword));
 //        try {
 //            String decode = new String((new BASE64Decoder()).decodeBuffer(encodedPassword));
 //            return rawPassword.equals(decode);

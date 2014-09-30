@@ -23,8 +23,8 @@ public class BASE64 {
     public static void main(String[] args) {
         String pass = "luowei";
         String jiami =JiamiJiemi.jiami(pass,"luowei");
-        String encrypted = encode("818930915210baz");
-        String decrypted = decode("MDk0OTMwOTFoNGR2bnRr");
+        String encrypted = base64Encode("818930915210baz");
+        String decrypted = base64Decode("MDk0OTMwOTFoNGR2bnRr");
         String result =  JiamiJiemi.jiemi(decrypted,"luowei");
 
         System.out.println(pass.equals(result));
@@ -32,11 +32,11 @@ public class BASE64 {
         new BASE64();
     }
 
-    public static String encode(String key) {
+    public static String base64Encode(String key) {
         return (new BASE64Encoder()).encodeBuffer(key.getBytes());
     }
 
-    public static String decode(String key) {
+    public static String base64Decode(String key) {
         try {
             return new String((new BASE64Decoder()).decodeBuffer(key));
         } catch (IOException e) {
@@ -101,13 +101,13 @@ public class BASE64 {
             b1.setMnemonic('E');
             b1.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    tf2.setText(encode(tf1.getText()/*,tf3.getText()*/));
+                    tf2.setText(base64Encode(tf1.getText()/*,tf3.getText()*/));
                     //tf3.setText("");
                 }
             });
             b1.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
-                    tf2.setText(encode(tf1.getText()/*,tf3.getText()*/));
+                    tf2.setText(base64Encode(tf1.getText()/*,tf3.getText()*/));
                     //tf3.setText("");
                 }
             });
@@ -116,13 +116,13 @@ public class BASE64 {
             b2.setMnemonic('D');
             b2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    tf2.setText(decode(tf1.getText()/*,tf3.getText()*/));
+                    tf2.setText(base64Decode(tf1.getText()/*,tf3.getText()*/));
                     //tf3.setText("");
                 }
             });
             b2.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
-                    tf2.setText(decode(tf1.getText()/*,tf3.getText()*/));
+                    tf2.setText(base64Decode(tf1.getText()/*,tf3.getText()*/));
                     //tf3.setText("");
                 }
             });

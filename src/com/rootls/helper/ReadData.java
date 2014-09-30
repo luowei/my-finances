@@ -2,11 +2,17 @@ package com.rootls.helper;
 
 import com.rootls.crud.account.Account;
 import com.rootls.crud.finance.Daytip;
+import com.rootls.crud.regex.RegexTip;
+import com.rootls.utils.JaxbUtil;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +37,7 @@ public class ReadData {
 
     /**
      * 从文件中读取Daytip
+     *
      * @return
      */
     public synchronized List<Daytip> readTipsFromFile() {
@@ -54,7 +61,7 @@ public class ReadData {
             return list;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e.getMessage(),e);
+            throw new RuntimeException(e.getMessage(), e);
         } finally {
             close(read);
             close(reader);
@@ -80,8 +87,8 @@ public class ReadData {
 
                 if (isNotBlank(line) && line.contains(":")) {
                     String[] arr = line.split("\\:");
-                    if(arr[1] != null && arr[1].contains("/")){
-                        String[] arr2 =  arr[1].split("\\/");
+                    if (arr[1] != null && arr[1].contains("/")) {
+                        String[] arr2 = arr[1].split("\\/");
                         Account account = new Account(null, arr[0], arr2[0], jiami(arr2[1], secrectKey));
                         list.add(account);
                     }
@@ -91,7 +98,7 @@ public class ReadData {
             return list;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e.getMessage(),e);
+            throw new RuntimeException(e.getMessage(), e);
         } finally {
             close(read);
             close(reader);
@@ -118,7 +125,7 @@ public class ReadData {
             return true;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e.getMessage(),e);
+            throw new RuntimeException(e.getMessage(), e);
         }
     }
 
@@ -126,22 +133,22 @@ public class ReadData {
     //======================================================================================================
 
     //------------------------
-    public static String url = "http://note.youdao.com/yws/public/note/c316d3c1acc0452d8cd6d5d599824e13?keyfrom=public";
+
     public synchronized List<Daytip> readTipsFromUrl() {
         InputStreamReader read = null;
         BufferedReader reader = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            TipData tipData = mapper.readValue(new URL(url), TipData.class);
+            TipData tipData = mapper.readValue(new URL(noteUrl), TipData.class);
 
             List<Daytip> list = new ArrayList<Daytip>();
-            String[] lines = tipData.getContent().replace("<div>","").replace("\r","")
-                    .replace("\n","").replace("</div>","\n").split("\n");
+            String[] lines = tipData.getContent().replace("<div>", "").replace("\r", "")
+                    .replace("\n", "").replace("</div>", "\n").split("\n");
 
-            for(String line:lines){
-                if(isNotBlank(line) && line.contains("~")){
+            for (String line : lines) {
+                if (isNotBlank(line) && line.contains("~")) {
                     String[] arr = line.split("\\~");
-                    Daytip tip = new Daytip(arr[0],null,arr[1],Float.valueOf(arr[2]),arr[3]);
+                    Daytip tip = new Daytip(arr[0], null, arr[1], Float.valueOf(arr[2]), arr[3]);
                     tip.setType(arr[4]);
                     list.add(tip);
                 }
@@ -160,34 +167,66 @@ public class ReadData {
     public static void main(String[] args) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
-        TipData tipData = mapper.readValue(new URL(url), TipData.class);
+        TipData tipData = mapper.readValue(new URL(noteUrl), TipData.class);
 
         List<Daytip> list = new ArrayList<Daytip>();
-        String[] lines = tipData.getContent().replace("<div>","").replace("</div>","").split("\n");
+        String[] lines = tipData.getContent().replace("<div>", "").replace("</div>", "").split("\n");
 
-        for(String line:lines){
+        for (String line : lines) {
 
-            if(isNotBlank(line) && line.contains("~")){
+            if (isNotBlank(line) && line.contains("~")) {
                 String[] arr = line.split("\\~");
-                Daytip tip = new Daytip(arr[0],null,arr[1],Float.valueOf(arr[2]),arr[3]);
+                Daytip tip = new Daytip(arr[0], null, arr[1], Float.valueOf(arr[2]), arr[3]);
                 list.add(tip);
             }
         }
         System.out.println(list.size());
     }
 
+    public List<RegexTip> readRegexTipFile() {
+
+        RegData regData = null;
+        try {
+            InputStream input = ReadData.class.getClassLoader().getResourceAsStream(data_regex);
+            byte[] data = new byte[input.available()];
+            input.read(data);
+
+            String xml = new String(data, "UTF-8");
+            regData = JaxbUtil.converyToJavaBean(xml, RegData.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return regData == null ? null : regData.getRow();
+    }
+
     public List readBeansFromZipFile(String type, String secretKey) {
         return null;
     }
 
-    public static class TipData implements Serializable{
+    @XmlRootElement(name = "data")
+    @XmlAccessorType(XmlAccessType.FIELD)
+    public static class RegData {
+        @XmlElement(name = "row")
+        List<RegexTip> row = new ArrayList<RegexTip>();
+
+        public List<RegexTip> getRow() {
+            return row;
+        }
+
+        public void setRow(List<RegexTip> row) {
+            this.row = row;
+        }
+    }
+
+    public static class TipData implements Serializable {
         //标题
         String tl;
         //内容
         String content;
 
-        Long mt,ct,sz;
-        String p,su,au;
+        Long mt, ct, sz;
+        String p, su, au;
 
         public String getTl() {
             return tl;

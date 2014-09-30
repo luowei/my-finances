@@ -29,15 +29,18 @@ public class Config implements ServletContextListener {
     public static Integer pageSize = 20;
     public static Long inerCache_expire = 24 * 3600 * 1000L;
 
-    public static String zipPassword="luowei505050";
+    public static String zipPassword="xxxxx";
     public static String data_daytips = "resource/data/daytips.txt";
     public static String data_accountZip="resource/data/accounts.zip";
+    public static String data_regex="resource/data/regex.xml";
     public static String data_accountFileName="accounts.txt";
     public static String encoding="UTF-8";
     public static String date_pattern = "yyyy-MM-dd";
     public static String time_pattern = "yyyy-MM-dd HH:mm:dd";
     public static String secret_key = "luowei";
     public static String ctx = "/";
+
+    public static String noteUrl = "http://note.youdao.com/yws/public/note/f827fc5a2b3be2c91b13861d4cd18a54?keyfrom=public";
 
     private void setFields(Map<String, String> map) {
         String _login_success = map.get("login_success");
@@ -61,6 +64,9 @@ public class Config implements ServletContextListener {
         String _data_daytips = map.get("data_daytips");
         data_daytips = (_data_daytips != null && _data_daytips !="")?_data_daytips:data_daytips;
 
+        String _data_regex = map.get("data_regex");
+        data_regex = (_data_regex != null && _data_regex !="")?_data_regex:data_regex;
+
         String _data_accountZip = map.get("data_accountZip");
         data_accountZip = (_data_accountZip != null && _data_accountZip !="")?_data_accountZip:data_accountZip;
 
@@ -78,6 +84,10 @@ public class Config implements ServletContextListener {
 
         String _secret_key = map.get("secret_key");
         secret_key = (_secret_key != null && _secret_key !="")?_secret_key:secret_key;
+
+        String _noteUrl = map.get("noteUrl");
+        noteUrl = (_noteUrl != null && _noteUrl !="")?_noteUrl:noteUrl;
+
     }
 
     private static String getConfigPath() {

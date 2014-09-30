@@ -2,6 +2,7 @@ package com.rootls.test;
 
 import com.rootls.crud.finance.Daytip;
 import com.rootls.crud.finance.DaytipRepository;
+import com.rootls.crud.regex.RegexTip;
 import com.rootls.helper.ReadData;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -20,7 +21,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext-root.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext-test.xml"})
 public class ReadDaytip {
 
     @Autowired
@@ -78,4 +79,11 @@ public class ReadDaytip {
         Assert.assertTrue(daytipRepository.checkTipDate(tableName));
     }
 
+    @Test
+    public void testReadRegexTipFile() throws Exception {
+
+        List<RegexTip> list = readData.readRegexTipFile();
+        System.out.println(list);
+        Assert.assertFalse(list.isEmpty());
+    }
 }

@@ -64,10 +64,10 @@ public class passwordTest {
 //        System.out.println(cryptedPass);
 //        System.out.println("Recovered: " + decrypt(cryptedPass.getBytes()));
         String jia = JiamiJiemi.jiami("luowei", secret_key);
-        String encod = BASE64.encode(jia);
+        String encod = BASE64.base64Encode(jia);
         System.out.print(encod);
-        System.out.println(BASE64.decode("OTIzOTMwOTE0bWhsY3o="));
-        System.out.println(jiemi(BASE64.decode(encod),secret_key));
+        System.out.println(BASE64.base64Decode("OTIzOTMwOTE0bWhsY3o="));
+        System.out.println(jiemi(BASE64.base64Decode(encod),secret_key));
     }
 
     private static byte[] encrypt(String input) throws Exception {
