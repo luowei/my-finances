@@ -57,7 +57,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 insert  into `user`(`id`,`username`,`password`,`token`,`email`,`secretKey`,`role`)
-values (1,'admin','MDk0OTMwOTFoNGR2bnRr',NULL,'admin@rootls.com','luowei','ROLE_ADMIN');
+values (1,'admin','OTI4OTMwOTEyNDEwYmF6',NULL,'admin@rootls.com','luowei','ROLE_ADMIN');
 
 #正则式
 DROP TABLE IF EXISTS `regextip`;
