@@ -14,8 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.rootls.utils.BASE64.decrypt;
-import static com.rootls.utils.BASE64.encrypt;
+import static com.rootls.utils.BASE64.decode;
+import static com.rootls.utils.BASE64.encode;
 import static com.rootls.utils.JiamiJiemi.jiemi;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
@@ -45,7 +45,7 @@ public class AccountRepository extends BaseRespository {
 
     public int add(Account account) {
         String sql = " insert into account(siteName,`keyName`,keySecret) " +
-                " values('" + account.getSiteName() + "','" + account.getKeyName() + "','" + encrypt(account.getKeySecret()) + "')";
+                " values('" + account.getSiteName() + "','" + account.getKeyName() + "','" + encode(account.getKeySecret()) + "')";
         return getJdbcTemplate().update(sql);
     }
 
@@ -56,7 +56,7 @@ public class AccountRepository extends BaseRespository {
 
     public int update(Account account) {
         String sql = " update account set siteName='" + account.getSiteName() + "',`keyName`='" + account.getKeyName() + "', " +
-                " keySecret='" + encrypt(account.getKeySecret()) + "' where id=" + account.getId();
+                " keySecret='" + encode(account.getKeySecret()) + "' where id=" + account.getId();
         return getJdbcTemplate().update(sql);
     }
 
@@ -99,7 +99,7 @@ public class AccountRepository extends BaseRespository {
                 );
                 String keySecret = rs.getString("keySecret");
                 if (isNotBlank(keySecret)) {
-                    account.setKeySecret(decrypt(keySecret));
+                    account.setKeySecret(decode(keySecret));
                 }
                 return account;
             }
@@ -116,7 +116,7 @@ public class AccountRepository extends BaseRespository {
                     public String extractData(ResultSet rs) throws SQLException, DataAccessException {
                         if(rs.next()){
                             String keySecret = rs.getString("keySecret");
-                            return jiemi(decrypt(keySecret),key);
+                            return jiemi(decode(keySecret),key);
                         }
                         return "";
                     }
@@ -141,7 +141,7 @@ public class AccountRepository extends BaseRespository {
                             null
                     );
                     String keySecret = rs.getString("keySecret");
-                    account.setKeySecret(decrypt(keySecret));
+                    account.setKeySecret(decode(keySecret));
                     return account;
                 }
                 return null;

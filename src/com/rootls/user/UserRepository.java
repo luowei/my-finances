@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 
-import static com.rootls.utils.BASE64.encrypt;
+import static com.rootls.utils.BASE64.encode;
 import static com.rootls.utils.JiamiJiemi.jiami;
 
 /**
@@ -64,7 +64,7 @@ public class UserRepository extends BaseRespository {
 
     public int reSetAdmin() {
         boolean exsitAdmin = getJdbcTemplate().queryForInt("select count(*) from user where username='admin'") > 0;
-        String encryptPW= encrypt(jiami("admin", "luowei"));
+        String encryptPW= encode(jiami("admin", "luowei"));
         int ret = 0;
         if(exsitAdmin){
             ret = getJdbcTemplate().update("update user set password='"+encryptPW+"'," +

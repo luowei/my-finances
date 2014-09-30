@@ -30,7 +30,7 @@ public class JiamiJiemi {
             return null;
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        return encode(in + sdf.format(new Date()), secretKey);
+        return myEncrypt(in + sdf.format(new Date()), secretKey);
     }
 
     /**
@@ -43,7 +43,7 @@ public class JiamiJiemi {
         if (out == null) {
             return null;
         }
-        return decode(out.substring(8, out.length()), secretKey);
+        return myDecrypt(out.substring(8, out.length()), secretKey);
     }
 
     /**
@@ -57,11 +57,11 @@ public class JiamiJiemi {
         if (str == null) {
             return null;
         }
-        return new SimpleDateFormat("yyyyMMdd").parse(decode(str, secretKey).substring(0, 8));
+        return new SimpleDateFormat("yyyyMMdd").parse(myDecrypt(str, secretKey).substring(0, 8));
     }
 
 
-    public static String encode(String in, String secrectKey) {
+    public static String myEncrypt(String in, String secrectKey) {
         //以字母开头，长度在6-18之间
 //        Pattern.compile("^[a-zA-Z]w{5,17}$").matcher(in).matches();
         if (in == null ) {
@@ -101,7 +101,7 @@ public class JiamiJiemi {
         return out.trim();
     }
 
-    public static String decode(String out, String secrectKey) {
+    public static String myDecrypt(String out, String secrectKey) {
         //以字母开头，长度在6-18之间
 //        Pattern.compile("^[a-zA-Z]w{5,17}$").matcher(out).matches();
         if (out == null ) {
