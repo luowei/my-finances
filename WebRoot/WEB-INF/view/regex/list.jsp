@@ -199,7 +199,7 @@
 </div>
 
 
-<script src="<c:url value='/resources/js/base64.js'/>"></script>
+<script src="<c:url value='/resources/js/base64.min.js'/>"></script>
 <script src="<c:url value='/resources/js/jquery-ui/1.10.4/ui/jquery-ui.min.js'/>"></script>
 
 <script type="text/javascript">

@@ -153,7 +153,7 @@
     <!-- /.modal-content -->
 </div>
 
-<script src="<c:url value='/resources/js/mycrypt.js'/>"></script>
+<script src="<c:url value='/resources/js/mycrypt.min.js'/>"></script>
 <script src="<c:url value='/resources/js/jquery-ui/1.10.4/ui/jquery-ui.min.js'/>"></script>
 
 <script type="text/javascript">

@@ -34,7 +34,7 @@ Date.prototype.Format = function(fmt)
 
 var secretKey = null;
 
-var myEncode = function (input,key) {
+var myEncrypt = function (input,key) {
     if (input == null) {
         return null;
     }
@@ -71,7 +71,7 @@ var myEncode = function (input,key) {
     return output;
 }
 
-var myDecode = function (output,key) {
+var myDecrypt = function (output,key) {
     if (output == null) {
         return null;
     }
@@ -114,12 +114,12 @@ var jiami = function(input,key){
     if(input==null){
         return null;
     }
-    return myEncode(input+(new Date()).Format("yyyyMMdd"),key)
+    return myEncrypt(input+(new Date()).Format("yyyyMMdd"),key)
 }
 
 var jiemi = function(output,key){
     if(output==null){
         return null;
     }
-    return myDecode(output.substring(8),key)
+    return myDecrypt(output.substring(8),key)
 }

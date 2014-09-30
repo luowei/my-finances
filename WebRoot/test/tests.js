@@ -60,8 +60,8 @@
 
 //test mycrypt
 test('assertions', function() {
-    equal( myEncode('luowei'),'hdvn1tk' , 'test myEncode ok');
-    equal( myDecode('hdvn1tk'),'luowei' , 'test myDecode ok');
+    equal( myEncrypt('luowei'),'hdvn1tk' , 'test myEncrypt ok');
+    equal( myDecrypt('hdvn1tk'),'luowei' , 'test myDecrypt ok');
 });
 
 //test base64

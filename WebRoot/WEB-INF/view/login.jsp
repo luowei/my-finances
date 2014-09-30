@@ -47,7 +47,7 @@
 </div>
 <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-2.1.0.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/bootstrap3/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/resources/js/mycrypt.js'/>"></script>
+<script src="<c:url value='/resources/js/mycrypt.min.js'/>"></script>
 <script type="application/javascript">
     var login = function(){
         var username = $('input[name=username]').val();
