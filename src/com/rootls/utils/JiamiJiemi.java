@@ -139,8 +139,8 @@ public class JiamiJiemi {
         return in.trim();
     }
 
-    public JiamiJiemi() {
-        MyGui tw = new MyGui("文件加密对话框");
+    public JiamiJiemi(String secretKey) {
+        MyGui tw = new MyGui("加密解密",secretKey);
         tw.setVisible(true);
     }
 
@@ -155,7 +155,7 @@ public class JiamiJiemi {
         in = JiamiJiemi.jiemi(out,secretKey);
         System.out.println(in);
 
-        new JiamiJiemi();
+        new JiamiJiemi("luowei");
     }
 
     //===================================================================
