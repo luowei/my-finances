@@ -44,3 +44,6 @@
 
 - create with help of : [prose](http://prose.io):http://prose.io
 
+
+**视频讲解**
+[my-finances示例讲解]http://www.tudou.com/programs/view/yu3ngrW7N_A/
