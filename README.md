@@ -1,7 +1,7 @@
 # my-finances
 
 [my-finances](https://github.com/luowei/my-finances)是一个基础的采用spring mvc的maven web骨架项目，
-已配置好了`spring data jpa`，和`spring jdbcTeimplate`的自定义的实现。
+已配置好了`spring-data-jpa`，和`spring jdbcTeimplate`的自定义的实现。
 
 -------------------------------------------------------------
 
